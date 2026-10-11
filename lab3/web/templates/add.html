@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить трату</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    {{template "header"}}
+ 
+    <main>
+        <h1>Добавить трату</h1>
+ 
+        <form method="POST" action="/expenses/add">
+            <p>Сумма: <input type="text" name="amount" required></p>
+            <p>Описание: <input type="text" name="description" required></p>
+            <p>Дата: <input type="date" name="date" required></p>
+            <button type="submit">Добавить</button>
+        </form>
+    </main>
+ 
+    {{template "footer"}}
+</body>
+</html>

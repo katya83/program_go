@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список трат</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    {{template "header"}}
+ 
+    <main>
+        <h1>Список трат</h1>
+ 
+        <table>
+            <tr>
+                <th>Описание</th>
+                <th>Дата</th>
+                <th>Сумма</th>
+            </tr>
+            {{range .}}
+            <tr>
+                <td>{{.Description}}</td>
+                <td>{{.Date}}</td>
+                <td>{{.Amount}}</td>
+            </tr>
+            {{end}}
+        </table>
+    </main>
+ 
+    {{template "footer"}}
+</body>
+</html>

@@ -1,0 +1,14 @@
+{{define "header"}}
+<header>
+    <a href="/expenses">Список трат</a>
+    <a href="/expenses/add">Добавить трату</a>
+    <form method="POST" action="/logout">
+        <button type="submit">Выйти</button>
+    </form>
+</header>
+{{end}}
+ 
+{{define "footer"}}
+<footer>Учёт трат - учебный проект на Go</footer>
+{{end}}
+

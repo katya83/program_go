@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список трат</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    {{template "header"}}
+ 
+    <main>
+        <h1>Список трат</h1>
+ 
+        <form class="filter" method="GET" action="/expenses">
+            Категория:
+            <select name="category">
+                <option value="">Все категории</option>
+                {{range .Categories}}
+                <option value="{{.ID}}" {{if eq .ID $.Filter.CategoryID}}selected{{end}}>{{.Name}}</option>
+                {{end}}
+            </select>
+            С: <input type="date" name="from" value="{{.Filter.DateFrom}}">
+            По: <input type="date" name="to" value="{{.Filter.DateTo}}">
+            <button type="submit">Применить</button>
+            <a href="/expenses">Сбросить</a>
+        </form>
+ 
+        {{if .Expenses}}
+        <table>
+            <tr>
+                <th>Описание</th>
+                <th>Категория</th>
+                <th>Дата</th>
+                <th>Сумма</th>
+                <th>Действия</th>
+            </tr>
+            {{range .Expenses}}
+            <tr>
+                <td>{{.Description}}</td>
+                <td>{{.CategoryName}}</td>
+                <td>{{.Date}}</td>
+                <td>{{.Amount}}</td>
+                <td>
+                    <a href="/expenses/{{.ID}}/edit">Изменить</a>
+                    <form method="POST" action="/expenses/{{.ID}}/delete" onsubmit="return confirm('Удалить трату?');">
+                        <button type="submit">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+            {{end}}
+        </table>
+        {{else}}
+        <p>Трат не найдено.</p>
+        {{end}}
+    </main>
+ 
+    {{template "footer"}}
+</body>
+</html>
